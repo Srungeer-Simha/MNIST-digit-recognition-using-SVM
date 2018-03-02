@@ -7,5 +7,7 @@ The database contains 70000 digitally scanned images (60000 training and 10000 t
 In this piece of work I've tried to develop a SVM model that classifies the handwritten digits using the give pixel values as features.
 
 Details on the dataset, algorithms that have been attempted and their success levels can be found on http://yann.lecun.com/exdb/mnist/index.html. 
+
 Kaggle page for the ongoing MNIST competetion: https://www.kaggle.com/c/digit-recognizer
+
 Wikipedia page on the MNIST database: https://en.wikipedia.org/wiki/MNIST_database
