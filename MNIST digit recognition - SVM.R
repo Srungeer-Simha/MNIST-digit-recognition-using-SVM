@@ -7,7 +7,7 @@ library(caTools)
 library(gridExtra)
 
 
-############################################## Business objective ##########################################
+################################################ Objective ################################################
 
 # To succesfully classify handwritten digits (0-9) using pixel values 
 # Support Vector Machines will be applied
@@ -58,7 +58,7 @@ sum(sapply(mnist_train, function(x) sum(is.na(x)))) # There are no missing value
 # The digits have been size-normalized and centered in a fixed-size image
 
 str(mnist_test) # all dependant variables are integers, 60000 observations, 785 variables
-str(mnist_train) # all dependant variables integers, 5000 observations, 785 variables
+str(mnist_train) # all dependant variables integers, 10000 observations, 785 variables
 
 summary(mnist_test[ , 2:100]) # some columns seem to be containing only zeros, Pixel values go upto 255,
 summary(mnist_train[ , 2:100]) # but some only go up to ~100, data needs to be scaled
@@ -164,7 +164,7 @@ plot(fit.linear)
 
 # Observations:
 # Best accuracy of 92% at C = 0.1
-# Higher values of C are overfitting and lower values are too generic
+# Higher values of C are overfitting and lower values are giving simple models
 
 eval_cv_linear <- predict(fit.linear, newdata = test)
 confusionMatrix(eval_cv_linear, test$label)
@@ -246,9 +246,9 @@ confusionMatrix(eval_cv_rbf, test$label)
 # Very High Specificities > 99%
 
 
-#--------------------------------------------- Linear Kernel ----------------------------------------------#
+#--------------------------------------------- Polynomial Kernel ----------------------------------------------#
 
-## Polynomial kernel with degree 2 and default scale and offset
+## Polynomial kernel with degree 2, default scale and offset
 model1_poly <- ksvm(label ~ ., data = train, kernel = "polydot", scaled = FALSE, C = 1, 
                     kpar = list(degree = 2, scale = 1, offset = 1))
 print(model1_poly)
@@ -347,6 +347,6 @@ final_model = fit.rbf2
     # Accuracy = 95.46%
     # Sensitivites > 92%
     # Specificities > 99%
-# Polynomial kernel (C = 0.01, degree = 2, scale = 1, offset = 0.05) also perfromed very well
+# Polynomial kernel (C = 0.01, degree = 2, scale = 1, offset = 0.05) also perfromed equally well
     # performance metrics are only marginally lesser than radial kernel
     # Run time is better than that of radial kernel
